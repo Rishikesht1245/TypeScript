@@ -211,6 +211,15 @@ const userExclude: Exclude<UsersType, "Admin"> = "Manager";
 
 type Food = Record<string, any>;
 
+// another way of using records
+type Foods = {
+  [index: string]: string;
+};
+
 const food: Food = {
   name: "Pizza",
 };
+
+// ========== Other Types in Typescript ======== */
+
+// 1. any

@@ -1,30 +1,31 @@
+"use strict";
 // ======== infer types : auto detecting of types ========= */
 // let name = "Rishi";
 // name = 0;
 // =========== defining types ============== */
-var userName = "Rishi";
-var number = 30;
-var isSub = true;
+let userName = "Rishi";
+let number = 30;
+let isSub = true;
 // array of strings
-var skills = ["js", "ts"];
-var numbers = [12, 23];
+let skills = ["js", "ts"];
+let numbers = [12, 23];
 // objects
-var userDetails = { name: "Rishi", age: 23 };
-var personDetails = {
+let userDetails = { name: "Rishi", age: 23 };
+let personDetails = {
     name: "rishi",
     age: 20,
-    getName: function () {
+    getName() {
         console.log(this.name);
     },
 };
-var employeeDetails = {
+let employeeDetails = {
     name: "Rishi",
     age: 22,
     salary: 30000,
 };
 // arrays with different types of elements
-var mySkills = [1, "Js", 2, "ts"];
-var values = {
+const mySkills = [1, "Js", 2, "ts"];
+let values = {
     name: "rishi",
 };
 // ============ function ============= */
@@ -32,7 +33,7 @@ function getUserName(employeeDetails) {
     return employeeDetails.name;
 }
 getUserName(employeeDetails);
-var currentStatus = "completed";
+let currentStatus = "completed";
 function add(num1, num2) {
     return num1 + num2;
 }
@@ -45,11 +46,11 @@ function getAge(age) {
 }
 getAge(2);
 getAge("23");
-var userDetailsGene = {
+const userDetailsGene = {
     name: "rishi",
     age: 22,
 };
-var adminDetailsGene = {
+const adminDetailsGene = {
     name: "rishi",
     age: 23,
     role: "admin",
@@ -57,8 +58,8 @@ var adminDetailsGene = {
 function getUserDetails(details) {
     return details;
 }
-var userValue = getUserDetails(userDetailsGene);
-var adminValue = getUserDetails(adminDetailsGene);
+const userValue = getUserDetails(userDetailsGene);
+const adminValue = getUserDetails(adminDetailsGene);
 console.log(adminValue.role);
 console.log(userValue.age);
 // =================== ENUMS ================== */
@@ -70,12 +71,44 @@ var StatusTypeEnum;
 })(StatusTypeEnum || (StatusTypeEnum = {}));
 console.log(StatusTypeEnum.PENDING);
 // ============= as const ==================== */
-var username = "rishi";
+let username = "rishi";
 // username = "vasu" -- gives error as we made the username const
-var Learner = {
+const Learner = {
     name: "rishi",
     age: 23,
 };
 // Learner.name = "vasu"; -- gives error
 // ============= keyof and typeof ========= */
-console.log(typeof Learner);
+function getLearner(learner) {
+    return learner;
+}
+//------- Readonly
+const userDetailsUtils = {
+    name: "rishi",
+    age: 22,
+};
+// userDetailsUtils.name = "vasu" // gives error as it is readonly type
+// --------Partial
+const UserDetailsPartial = {
+    name: "rishi",
+};
+// won't give error if we don't mention the age
+// -------- Required -- to make all the fields required (if we mention some fields optional)
+const userDetailsRequired = {
+    name: "rishi",
+    age: 22,
+};
+// ---------- Pick --- used to pick only some properties from the type
+const userDetailsPick = {
+    age: 22,
+};
+// ---------- Omit -- Used to omit the specified field
+const userDetailsOmit = {
+    age: 22,
+};
+const userExclude = "Manager";
+const food = {
+    name: "Pizza",
+};
+// ========== Other Types in Typescript ======== */
+// 1. any
