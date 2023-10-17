@@ -1,4 +1,19 @@
 // ======== infer types : auto detecting of types ========= */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 // let name = "Rishi";
 // name = 0;
 // =========== defining types ============== */
@@ -114,6 +129,7 @@ var foods = {
 };
 // =================== Classes in Type Script ================== */
 var Player = /** @class */ (function () {
+    // no need for initialization or definition if we defined the properties inside the constructor
     function Player(height, weight, power) {
         this.height = height;
         this.weight = weight;
@@ -121,5 +137,62 @@ var Player = /** @class */ (function () {
     }
     return Player;
 }());
-var abhi = new Player(100, 100, 100);
+var abhi = new Player(300, 100, 200);
 console.log(abhi.height); // only height will be available as other properties are private and protected
+var Player2 = /** @class */ (function (_super) {
+    __extends(Player2, _super);
+    function Player2(height, weight, power, special) {
+        var _this = _super.call(this, height, weight, power) || this;
+        _this.special = special;
+        // power will be accessible since it is protected (child class can access it)
+        _this.getPower = function () { return _this.power; };
+        _this.id = String(Math.random() * 1000);
+        return _this;
+    }
+    return Player2;
+}(Player));
+var rishi = new Player2(100, 100, 100, true);
+console.log(rishi.special);
+console.log(rishi.id);
+// getters and setters in class
+// 1 . getters are used to return a value from a class and it is defined using get keyword
+// 2. setters are used to set or change the value of a variable present inside a class it is defined using set keyword
+var Reader = /** @class */ (function () {
+    function Reader(name, book) {
+        this.name = name;
+        this.book = book;
+    }
+    Object.defineProperty(Reader.prototype, "getReaderName", {
+        get: function () {
+            return this.name;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Reader.prototype, "SetReaderName", {
+        set: function (value) {
+            this.name = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return Reader;
+}());
+var reader = new Reader("Rishikesh", "atomic habits");
+console.log((reader.SetReaderName = "rishi"));
+console.log(reader.getReaderName);
+var users = [
+    {
+        name: "rishi",
+        age: 23,
+    },
+    {
+        name: "abay",
+        age: 21,
+    },
+];
+function filterPeople(array, key, value) {
+    return array.filter(function (item) { return item[key] === value; });
+}
+var person = filterPeople(users, "name", "rishi");
+console.log(person);

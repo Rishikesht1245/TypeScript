@@ -220,6 +220,85 @@ const food: Food = {
   name: "Pizza",
 };
 
-// ========== Other Types in Typescript ======== */
+const foods: Foods = {
+  name: "rishi",
+};
 
-// 1. any
+// =================== Classes in Type Script ================== */
+class Player {
+  // no need for initialization or definition if we defined the properties inside the constructor
+  constructor(
+    public height: number,
+    private weight: number,
+    protected power: number
+  ) {}
+}
+
+const abhi = new Player(300, 100, 200);
+console.log(abhi.height); // only height will be available as other properties are private and protected
+
+class Player2 extends Player {
+  // readonly variable auto generated
+  public readonly id: String;
+  constructor(
+    height: number,
+    weight: number,
+    power: number,
+    public special: boolean
+  ) {
+    super(height, weight, power);
+    this.id = String(Math.random() * 1000);
+  }
+  // power will be accessible since it is protected (child class can access it)
+  getPower = () => this.power;
+  // getHeight = () => this.weight // weight is private and only accessible inside the class where it is declared
+}
+
+const rishi = new Player2(100, 100, 100, true);
+console.log(rishi.special);
+console.log(rishi.id);
+
+// getters and setters in class
+// 1 . getters are used to return a value from a class and it is defined using get keyword
+// 2. setters are used to set or change the value of a variable present inside a class it is defined using set keyword
+
+class Reader {
+  constructor(public name: string, public book: string) {}
+
+  get getReaderName(): string {
+    return this.name;
+  }
+
+  set SetReaderName(value: string) {
+    this.name = value;
+  }
+}
+
+const reader = new Reader("Rishikesh", "atomic habits");
+console.log((reader.SetReaderName = "rishi"));
+console.log(reader.getReaderName);
+
+// generics example
+
+type UserGene = {
+  name: string;
+  age: number;
+};
+
+const users: UserGene[] = [
+  {
+    name: "rishi",
+    age: 23,
+  },
+  {
+    name: "abay",
+    age: 21,
+  },
+];
+
+function filterPeople<T, U extends keyof T>(array: T[], key: U, value: T[U]) {
+  return array.filter((item) => item[key] === value);
+}
+
+const person = filterPeople(users, "name", "rishi");
+console.log(person);
