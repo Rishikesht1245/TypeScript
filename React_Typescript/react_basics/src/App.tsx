@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import Box from "./components/Box";
 import FormGenerics from "./components/FormGenerics";
+import PersonForm from "./components/PersonForm";
 
 interface Person {
   name: string;
@@ -31,26 +32,11 @@ function App() {
       {/* generics form */}
       <FormGenerics label="Search" value={value} onChange={setValue} />
 
-      {/* Person form */}
-      <form action="" onSubmit={onPersonFormSubmit}>
-        <input
-          type="number"
-          placeholder="age"
-          value={user?.age}
-          onChange={(e) =>
-            setUser((prev) => ({ ...prev, age: Number(e.target.value) }))
-          }
-        />
-        <input
-          type="text"
-          placeholder="name"
-          value={user?.name}
-          onChange={(e) =>
-            setUser((prev) => ({ ...prev, name: e.target.value }))
-          }
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <PersonForm
+        user={user}
+        setUser={setUser}
+        onPersonFormSubmit={onPersonFormSubmit}
+      />
     </div>
   );
 }
