@@ -4,6 +4,7 @@ import FormGenerics from "./components/FormGenerics";
 import PersonForm from "./components/PersonForm";
 import { ThemeProvider } from "./context/ThemeContext";
 import UseContext from "./components/UseContext";
+import UseReducer from "./components/UseReducer";
 
 interface Person {
   name: string;
@@ -45,6 +46,9 @@ function App() {
       <ThemeProvider>
         <UseContext />
       </ThemeProvider>
+
+      {/* useReducer hook */}
+      <UseReducer />
     </div>
   );
 }
