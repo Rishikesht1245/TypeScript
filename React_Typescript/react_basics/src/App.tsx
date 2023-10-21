@@ -2,6 +2,8 @@ import { FormEvent, useState } from "react";
 import Box from "./components/Box";
 import FormGenerics from "./components/FormGenerics";
 import PersonForm from "./components/PersonForm";
+import { ThemeProvider } from "./context/ThemeContext";
+import UseContext from "./components/UseContext";
 
 interface Person {
   name: string;
@@ -32,11 +34,17 @@ function App() {
       {/* generics form */}
       <FormGenerics label="Search" value={value} onChange={setValue} />
 
+      {/* person form */}
       <PersonForm
         user={user}
         setUser={setUser}
         onPersonFormSubmit={onPersonFormSubmit}
       />
+
+      {/* Theme Provider */}
+      <ThemeProvider>
+        <UseContext />
+      </ThemeProvider>
     </div>
   );
 }
