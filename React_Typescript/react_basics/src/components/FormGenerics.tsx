@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 type InputValProps = string | number;
 
 const FormGenerics = <T extends InputValProps>({
@@ -7,13 +8,17 @@ const FormGenerics = <T extends InputValProps>({
 }: {
   label: string;
   value: T;
-  onChange: () => void;
+  onChange: Dispatch<SetStateAction<string>>;
 }) => {
   return (
     <div>
       <form action="">
         <label htmlFor="input">{label}</label>
-        <input type="text" value={value} onChange={onChange} />
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        />
         <button type="submit">Search</button>
       </form>
     </div>
