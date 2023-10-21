@@ -5,6 +5,9 @@ import PersonForm from "./components/PersonForm";
 import { ThemeProvider } from "./context/ThemeContext";
 import UseContext from "./components/UseContext";
 import UseReducer from "./components/UseReducer";
+import { Provider } from "react-redux";
+import Redux from "./components/Redux";
+import { store } from "./redux/store";
 
 interface Person {
   name: string;
@@ -49,6 +52,11 @@ function App() {
 
       {/* useReducer hook */}
       <UseReducer />
+
+      {/* redux tool kit */}
+      <Provider store={store}>
+        <Redux />
+      </Provider>
     </div>
   );
 }
