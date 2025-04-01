@@ -1,56 +1,46 @@
-class Animal {
-    setCoordX(x) {
-        this.coordX = x;
-    }
-    setCoordY(y) {
-        this.coordY = y;
-    }
-    eat() {
-        console.log("I am eating");
-    }
-    sleep() {
-        console.log("I am sleeping");
+class Hero {
+    attack() {
+        console.log("I am attacking");
     }
     move() {
         console.log("I am moving");
     }
-    makeNoise() {
-        console.log("make noise");
+    eat() {
+        console.log("I am eating");
     }
 }
-// Dog is an Animal
-class Dog extends Animal {
-    // overrided the parent method here
-    makeNoise() {
-        console.log("Make barksss");
-    }
-    returnToOwner() {
-        console.log(`I am at ${this.coordX}, ${this.coordY} and now I am returning to owner`);
+class Archer extends Hero {
+    // over riding here
+    attack() {
+        super.attack();
+        console.log("Archer throwing arrow");
+        this.arrows -= 1;
     }
 }
-class Cat extends Animal {
-    makeNoise() {
-        console.log("Make meawah");
+class Commando extends Hero {
+    // over riding here
+    attack() {
+        super.attack();
+        console.log("Commando firing bullet");
+        this.bullets -= 1;
     }
 }
-const dog = new Dog();
-dog.setCoordX(19);
-dog.setCoordY(20);
-dog.returnToOwner();
-dog.makeNoise();
-const cat = new Cat();
-class Canine extends Animal {
-    makeNoise() {
-        console.log("Bark bark bark.");
+// object of a class can be treated as an object of the common super class
+const archer = new Archer();
+archer.attack();
+const commando = new Commando();
+class Tribe {
+    setHeros(heros) {
+        this.heros = heros;
+    }
+    attack() {
+        for (let hero of this.heros) {
+            hero.attack();
+        }
     }
 }
-class Dogs extends Canine {
-    returnToOwner() {
-        console.log(`Returning to owner`);
-    }
-    makeNoise() {
-        super.makeNoise();
-    }
-}
-const dogs = new Dogs();
-dogs.returnToOwner();
+const tribe = new Tribe();
+const heros = [archer, commando];
+tribe.setHeros(heros);
+tribe.attack();
+const commando2 = new Commando();
