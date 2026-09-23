@@ -24,7 +24,7 @@ enum Status {
   Active = "ACTIVE",
   Inactive = "INACTIVE",
 }
-const userStatus = Status.Active;
+const userStatus: Status = Status.Active;
 console.log(userStatus); // ACTIVE
 
 // ANY
