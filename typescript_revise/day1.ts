@@ -91,16 +91,30 @@ function combine(a: any, b: any): any {
   return a + b;
 }
 
-// Objects and Interfaces 
+// Objects and Interfaces
 // interfaces are used for defining the structure of objects.
-interface User{
-    id : number,
-    name : string,
-    email?: string
+interface User {
+  id: number;
+  name: string;
+  email?: string;
 }
 
-function displayUser(user:User): void{
-    console.log(user.name)
+function displayUser(user: User): void {
+  console.log(user.name);
 }
 
-displayUser({id : 1, name : "rishikesh"})
+displayUser({ id: 1, name: "rishikesh" });
+
+interface Product {
+  name: string;
+  price: number;
+  inStock: boolean;
+}
+
+function calculateTotal(prices: number[], taxRate: number): number {
+  if (prices.length === 0) return 0;
+  const totalPrices: number = prices.reduce((a, b) => a + b, 0);
+  return totalPrices + totalPrices * (taxRate / 100);
+}
+
+console.log(calculateTotal([1,100,200], 5));
