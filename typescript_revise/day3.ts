@@ -260,5 +260,5 @@ class ContractEmployee extends Employee {
 const fEmp = new FullTimeEmployee("Rishikesh", 120000);
 const cEmp = new ContractEmployee("Rishi", 50, 160);
 
-console.log(fEmp.describe()); // Rishikesh earns 10000
-console.log(cEmp.describe()); // Rishi earns 8000
+console.log(fEmp.describe()); 
+console.log(cEmp.describe());
